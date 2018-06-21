@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -78,11 +79,10 @@ public class BLV extends JFrame {
 	 * ver3.69 あらゆる状況でCCDカメラから撮影可能に。L,D,LD,DDDDDL,NOISEで撮影時はDになり、撮影が終わると本来あるべき明るさへ。
 	 */
 	private static final long serialVersionUID = -2508829707600345047L;
-//comit test change btvt
+
 	//Parameter
-	public static String version = "3.69";// 2014年10月28日
-//	public static String curDir = getCurDir();
-//	public static String curDir = "C:\\Documents and Settings\\hito\\workspace\\PanelTest";
+	public static String version = "3.69";// 2014年10月28日	
+	private static boolean testMode = true;
 	public static String curDir;
 	public static int SamplingTime = 3; // sampling every 3.0[s]
 	public int MACHINENO=0;
@@ -140,9 +140,13 @@ public class BLV extends JFrame {
 
 
 	public BLV(){
-
+		
+		System.out.println(curDir+"AAA");
 		osCheck();
-		setMachineNo();
+		if(testMode) curDir= new File(".").getAbsoluteFile().getParent();
+		else if (isWindows)curDir = "C:\\Documents and Settings\\hito\\workspace\\PanelTest"; //ここ現状にあわせて変えてください！！(山崎君)
+		else curDir = "/Users/hito/Documents/GitHub/BLV-Plant/";
+		
 
 		dlttb = new DelayLDTimeTextBox();
 	//	jm = new JudgeMeasurement();
@@ -664,10 +668,10 @@ public class BLV extends JFrame {
 		else curDir = "/Applications/BLV";
 	}
 
-	private void setMachineNo(){
-		MachineNoReader mnr = new MachineNoReader();
-		this.MACHINENO = mnr.getMachineNo();
-	}
+//	private void setMachineNo(){
+//		MachineNoReader mnr = new MachineNoReader();
+//		this.MACHINENO = mnr.getMachineNo();
+//	}
 
 //	private void setDisplayNo(){
 //		displayNo1 = new DisplayNo(expno1);

@@ -25,9 +25,8 @@ import fileIO.MatrixFileReader;
 public class MyLightNoiseButton extends JButton{
 	
 	private static final long serialVersionUID = 1L;
-	public int state =0; //0 waiting, 1 Noise
-	//int measureTime =10000; // measure every 10000[ms].
-	NoiseReader nr = new NoiseReader();;
+	int state =0; //0 waiting, 1 Noise
+	NoiseReader nr; 
 	String filename;
 	AnyWave t;
 	Timer ti = new Timer(500,null);
@@ -57,7 +56,8 @@ public class MyLightNoiseButton extends JButton{
 		
 
 		this.addActionListener(new ActionListener() {
-		       public void actionPerformed(ActionEvent e) {    	   
+		       public void actionPerformed(ActionEvent e) { 
+		    	  nr = new NoiseReader();
 		    	   if(state==0) changingAnyWave();
 		    	   else AnyWaveToStop();
 
