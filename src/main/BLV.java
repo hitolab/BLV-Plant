@@ -81,7 +81,7 @@ public class BLV extends JFrame {
 	private static final long serialVersionUID = -2508829707600345047L;
 
 	//Parameter
-	public static String version = "3.69";// 2014年10月28日	
+	public static String version = "3.69";// 2014年10月28日
 	private static boolean testMode = true;
 	public static String curDir;
 	public static int SamplingTime = 3; // sampling every 3.0[s]
@@ -123,7 +123,7 @@ public class BLV extends JFrame {
 	public LDCycleCounterTextBox ldcctb;
 
 	XYSeries dataseries1 = new XYSeries(1),
-	dataseries2 = new XYSeries(3),
+	dataseries2 = new XYSeries(2),
 	dataseries3 = new XYSeries(3),
 	dataseries4 = new XYSeries(4),
 	dataseries5 = new XYSeries("light");
@@ -140,13 +140,13 @@ public class BLV extends JFrame {
 
 
 	public BLV(){
-		
+
 		System.out.println(curDir+"AAA");
 		osCheck();
 		if(testMode) curDir= new File(".").getAbsoluteFile().getParent();
-		else if (isWindows)curDir = "C:\\Documents and Settings\\hito\\workspace\\PanelTest"; //ここ現状にあわせて変えてください！！(山崎君)
+		else if (isWindows)curDir = "C:\\Users\\circa\\Documents\\GitHub\\blvplant-test"; //ここ現状にあわせて変えてください！！(山崎君)
 		else curDir = "/Users/hito/Documents/GitHub/BLV-Plant/";
-		
+
 
 		dlttb = new DelayLDTimeTextBox();
 	//	jm = new JudgeMeasurement();
@@ -167,8 +167,8 @@ public class BLV extends JFrame {
 		chart1 = createScatterPlot(dataset1,"Biolumi. [cnt]");
 		chart2 = createScatterPlot(dataset2,"Biolumi. [cnt]");
 		chart3 = createScatterPlot(dataset3,"Biolumi. [cnt]");
-		chart4 = createScatterPlot(dataset4,"Biolumi. [cnt]");
-		chart5 = createStepPlot(dataset5,"LED current [A]");
+		///chart4 = createScatterPlot(dataset4,"Biolumi. [cnt]");
+		///chart5 = createStepPlot(dataset5,"LED current [A]");
 		setChartPanel();
 
 		//Panelの作成
@@ -206,6 +206,7 @@ public class BLV extends JFrame {
 		MyGraphRescaleButton mrb = new MyGraphRescaleButton(curDir+"/pic/back.png",chartArrays);
 
 		int row=2;
+		//Button in setting line
 		constraints.fill = GridBagConstraints.BOTH;
 		setConstraints(panel,gridbag,di,0,0,0,row-2,1,1);
 		setConstraints(panel,gridbag,sittb,0,0,1,row-2,1,1,10,0);
@@ -223,6 +224,7 @@ public class BLV extends JFrame {
 		setConstraints(panel,gridbag,ictb,0,0,5,row-1,1,1); //IntervalCCDTextBox
 		setConstraints(panel,gridbag,dci,0,0,6,row-1,1,1);
 
+		//Button in first line
 		setConstraints(panel,gridbag,cEXP1,0,0,0,row+0,1,1);
 		setConstraints(panel,gridbag,cbase1,10,100,GridBagConstraints.RELATIVE,row+0,1,7);
 		setConstraints(panel,gridbag,cchart1,100,50,GridBagConstraints.RELATIVE,row+0,4,7);
@@ -289,6 +291,7 @@ public class BLV extends JFrame {
 		setConstraints(panel,gridbag,spacer3,10,50,0,row+7,GridBagConstraints.REMAINDER,1);
 		row=row+8;
 
+		/*
 		//Forth line
 		cEXP4= new DisplayEXPNO(4);
 		cbase4_0= new BasePlace();
@@ -349,6 +352,9 @@ public class BLV extends JFrame {
 		setConstraints(panel,gridbag,dlttb,0,0,0,row+9,1,1); //LDサイクルをどれだけ遅らせてスタートするか
 		setConstraints(panel,gridbag,ldcctb,0,0,0,row+10,1,1); //LDサイクルをかける日数
 		//setConstraints(panel,gridbag,spacer5,10,50,0,row+11,GridBagConstraints.REMAINDER,1);
+		 *
+		 *
+		 */
 
 
 		makeFlame(panel);
@@ -647,8 +653,8 @@ public class BLV extends JFrame {
 					  if(cp1!=null) cp1.portfastclose();
 					  if(cp2!=null) cp2.portfastclose();
 					  if(cp3!=null) cp3.portfastclose();
-					  if(cp4!=null) cp4.portfastclose();
-					  if(ct!=null) ct.portfastclose();
+					 /// if(cp4!=null) cp4.portfastclose();
+					  ///if(ct!=null) ct.portfastclose();
 					  refreshExpNo();
 					  System.exit(0);
 				  }
@@ -684,16 +690,16 @@ public class BLV extends JFrame {
 		dataset1.addSeries(dataseries1);
 		dataset2.addSeries(dataseries2);
 		dataset3.addSeries(dataseries3);
-		dataset4.addSeries(dataseries4);
-		dataset5.addSeries(dataseries5);
+		///dataset4.addSeries(dataseries4);
+		///dataset5.addSeries(dataseries5);
 	}
 
 	private void setChartPanel(){
 		cchart1 = new ChartPanel(chart1);
 		cchart2 = new ChartPanel(chart2);
 		cchart3 = new ChartPanel(chart3);
-		cchart4 = new ChartPanel(chart4);
-		cchart5 = new ChartPanel(chart5);
+		///cchart4 = new ChartPanel(chart4);
+		///cchart5 = new ChartPanel(chart5);
 
 	}
 
