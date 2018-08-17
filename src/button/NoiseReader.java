@@ -1,4 +1,6 @@
 package button;
+import static main.BLV.curDir;
+
 import fileIO.MatrixFileReader;
 
 public class NoiseReader {
@@ -11,6 +13,17 @@ public class NoiseReader {
 		osCheck();
 		if(isWindows == true) mfr= new MatrixFileReader("C:\\Eclipce\\pleiades\\workspace\\BLVPlant\\input\\noise.txt\\");
 		else mfr = new MatrixFileReader("/Applications/BLV/input/noise.txt"); // Mac os ?
+		this.noise = mfr.readStringMatrix();
+
+	}
+
+	
+	public NoiseReader(String noisefile){
+		
+		MatrixFileReader mfr;
+		osCheck();
+		if(isWindows == true) mfr= new MatrixFileReader(curDir+"/input/"+noisefile);
+		else mfr = new MatrixFileReader("/Applications/BLV/input/" + noisefile); // Mac os
 		this.noise = mfr.readStringMatrix();
 
 	}

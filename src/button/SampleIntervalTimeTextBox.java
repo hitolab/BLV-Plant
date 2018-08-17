@@ -1,5 +1,7 @@
 package button;
 
+import java.awt.Dimension;
+
 import javax.swing.JTextField;
 
 public class SampleIntervalTimeTextBox extends JTextField {
