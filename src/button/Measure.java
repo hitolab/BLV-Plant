@@ -1,6 +1,7 @@
 package button;
 
-import static main.BLV.curDir;
+import static main.BLV.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -83,9 +84,9 @@ public class Measure extends Timer implements ActionListener{
 		date = new Date();//時刻表示用
 		System.out.println("いまから測定準備。"+date.toString());//測定準備入り時刻の記録
 
-		int timeOfFadeAwayPhotons =300000; //LEDの蓄光が無くなるまでの待機時間 5min
+		int timeOfFadeAwayPhotons =60000; //LEDの蓄光が無くなるまでの待機時間 1min
 
-		System.out.println("LEDが「完全に」消えるのを待っています");
+		System.out.println("LEDがしっかりと消えるのを待っています");
 		ca.wait(timeOfFadeAwayPhotons);//LEDの蛍光消えるの待っている状態
 		System.out.println("ca.waitを抜けました");
 
@@ -94,11 +95,11 @@ public class Measure extends Timer implements ActionListener{
 
 		ca.sendcommand("o");//全フォトマル通電
 
-		
+
 		measurePlotWrite(cp1,dataseries1,1);
 		measurePlotWrite(cp2,dataseries2,2);
 		measurePlotWrite(cp3,dataseries3,3);
-		
+
 		cp1.portclose();
 		cp2.portclose();
 		cp3.portclose();
@@ -109,7 +110,7 @@ public class Measure extends Timer implements ActionListener{
 
 		jm.keisokuchu = false;
 
-		tld.noisecounter = tld.noisecounter - 5; //タイマー停止の減算処理.ウェイト時間によるズレを帳尻あわせする為。
+		tld.noisecounter = tld.noisecounter - 1; //タイマー停止の減算処理.ウェイト時間によるズレを帳尻あわせする為。min単位
 		//アイデアメモ。tld.waitTimer(xxxx);xxxx msec 遅らせることができる。
 
 if(jm.makasareta == true){
@@ -139,7 +140,7 @@ else{
 }
 
 	}
-	
+
 	private void measurePlotWrite(CommunicatorPhotomul cp, XYSeries dataseries, int photomulNumber) {
 		System.out.println("starts measureing for Chamber" + photomulNumber);//測定開始
 		//計測～プロット
@@ -149,14 +150,14 @@ else{
 		double now = (double) dateinms /1000.0/60.0/60.0;
 		dataseries.add(now, data);
 		System.out.println("Chamber" + photomulNumber+"; time:" + now+" data:"+data);
-		
+
 		//計測～プロットここまで
 		//書き出し機能
 		String fileName = ftb.getText();
 		//.txtがついていればはぎとる
 		if(fileName.substring(fileName.length()-4, fileName.length()).equals(".txt")) fileName = fileName.substring(0, fileName.length()-4);
 		String outputpath;
-		
+
 		if(fileName.equals("")) {
 			outputpath = curDir+"/result/"+"result_"+photomulNumber+".txt";//テキストボックスに何もなければresult_1.txt
 			System.out.println("the output file name is not specified");

@@ -36,7 +36,6 @@ import button.DataDownButton;
 import button.DataUpButton;
 import button.DelayLDTimeTextBox;
 import button.DisplayCharacters;
-import button.DisplayEXPNO;
 import button.DisplayInterval;
 import button.DisplayLDTime;
 import button.DisplayMeasure;
@@ -54,7 +53,6 @@ import button.MyLightNoiseButton;
 import button.MyLightOFFButton;
 import button.SampleIntervalTimeTextBox;
 import button.SampleMeasureTimeTextBox;
-import button.myButton;
 import button.myMeasureButton;
 import button.myPrintButton;
 import button.myStopButton;
@@ -168,14 +166,14 @@ public class BLV extends JFrame {
 		sittb.setPreferredSize(new Dimension(20000, 3000));
 		resultftb = new FilenameTextBox();
 		ldftb = new FilenameTextBox();
-		
+
 		constraints.fill = GridBagConstraints.NONE;
 		setConstraints(panel,gridbag,di,0,0,       0,row-2,  1,1);
 		setConstraints(panel,gridbag,sittb,0,0,    1,row-2,  1,1);
 		setConstraints(panel,gridbag,dmin,0,0,     2,row-2,  1,1);
 		setConstraints(panel,gridbag,dfilename,0,0,3,row-2,  1,1);
 		setConstraints(panel,gridbag,resultftb,0,0,4,row-2,  6,1);
-		
+
 		//Buttons in the second line
 		DisplayMeasure dm = new DisplayMeasure();
 		DisplayCharacters dsec = new DisplayCharacters("sec");
@@ -193,7 +191,7 @@ public class BLV extends JFrame {
 		setConstraints(panel,gridbag,dldfile,0,0, 3,row-1, 1,1);
 		setConstraints(panel,gridbag,ldftb,0,0,   4,row-1, 6,1);
 
-		
+
 		//Buttons in first photomul
 		cs = new ConfirmState();
 		cmb1= new myMeasureButton(cp1,cp2,cp3,ca,ck,cchart1,dataseries1,dataseries2,dataseries3,1,sittb,smttb,this.MACHINENO,resultftb,dlttb,ldftb);
@@ -207,7 +205,7 @@ public class BLV extends JFrame {
 		//cbase1_1.setBackground(Color.pink);
 		//spacer1.setBackground(Color.ORANGE);
 
-		
+
 		setConstraints(panel,gridbag,cmb1,0,0,       0,                          row+0,                      1,1);
 		setConstraints(panel,gridbag,csb1,0,0,       0,                          row+1,                      1,1);
 		setConstraints(panel,gridbag,gtmc1,0,0,      0,                          row+2,                      1,1);

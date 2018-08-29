@@ -9,5 +9,8 @@
 	<classpathentry kind="lib" path="tool/rxtx-2.1-7-bins-r2/RXTXcomm.jar"/>
 	<classpathentry kind="lib" path="tool/jfreechart-1.0.15/lib/jfreechart-1.0.15.jar"/>
 	<classpathentry kind="lib" path="tool/jfreechart-1.0.15/lib/jcommon-1.0.18.jar"/>
+	<classpathentry kind="lib" path="tool/rxtx-2.1-7-bins-r2/rxtx-2.1-7-bins-r2/Windows/i368-mingw32/rxtxSerial.dll"/>
+	<classpathentry kind="lib" path="tool/RXTXCommDriver.java"/>
+	<classpathentry kind="lib" path="C:/Eclipce/pleiades/java/9/lib/rxtxParallel.dll"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
