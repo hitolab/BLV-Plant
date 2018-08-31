@@ -154,18 +154,17 @@ else{
 		System.out.println("Chamber" + photomulNumber+"; time:" + now+" data:"+data);
 
 		  //カレンダーを生成
-        Calendar cal = Calendar.getInstance();
-
+        Calendar cal = Calendar.getInstance();//空ファイルの名前設定に使用する。
         //フォーマットを設定して出力
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 		//計測～プロットここまで
 		//書き出し機能
 		String fileName = ftb.getText();
-		Date date = new Date();
+		Date date = new Date();//測定日「時」を記録するために、PC時間を取得
 
 		if(fileName.length()==0){//テキストボックスが空欄の時、日付をファイル名にする
-			fileName ="ex_" + "" + sdf.format(cal.getTime());
+			fileName ="ex_" + sdf.format(cal.getTime());
 
 
 		}
@@ -183,7 +182,7 @@ else{
 		MyFileWriter mfw = new MyFileWriter(outputpath,true);//trueを書くと追加していくようになる
 
 
-		mfw.writeALine(now+" "+data+" "+sdf.format(cal.getTime()));
+		mfw.writeALine(now+" "+data+" "+date.toString());
 		mfw.close();
 		//書き出しここまで
 
