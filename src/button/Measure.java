@@ -4,6 +4,8 @@ import static main.BLV.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.Timer;
@@ -146,25 +148,42 @@ else{
 		//計測～プロット
 		cp.init();
 		double data = cp1.measureOnce();//光量測定
-		long dateinms = new Date().getTime()-startTime;//計測時間
-		double now = (double) dateinms /1000.0/60.0/60.0;
+		long dateinms = new Date().getTime()-startTime;//開始からの経過時間
+		double now = (double) dateinms /1000.0/60.0/60.0;//開始からの経過時間を[ms]単位換算
 		dataseries.add(now, data);
 		System.out.println("Chamber" + photomulNumber+"; time:" + now+" data:"+data);
+
+		  //カレンダーを生成
+        Calendar cal = Calendar.getInstance();
+
+        //フォーマットを設定して出力
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 		//計測～プロットここまで
 		//書き出し機能
 		String fileName = ftb.getText();
-		//.txtがついていればはぎとる
-		if(fileName.substring(fileName.length()-4, fileName.length()).equals(".txt")) fileName = fileName.substring(0, fileName.length()-4);
+		Date date = new Date();
+
+		if(fileName.length()==0){//テキストボックスが空欄の時、日付をファイル名にする
+			fileName ="ex_" + "" + sdf.format(cal.getTime());
+
+
+		}
+		else if(fileName.length()<4){//テキストボックスに何か書いてあればそれがファイル名（.txtを含まないファイル名の場合）
+			fileName = fileName ;
+		}
+		else{
+		if(fileName.substring(fileName.length()-4, fileName.length()).equals(".txt")) {//ファイル名に.txtがついていればはぎとる
+			fileName = fileName.substring(0, fileName.length()-4);
+		}
+		}
 		String outputpath;
 
-		if(fileName.equals("")) {
-			outputpath = curDir+"/result/"+"result_"+photomulNumber+".txt";//テキストボックスに何もなければresult_1.txt
-			System.out.println("the output file name is not specified");
-		}
-		else outputpath = curDir+"/result/"+fileName+"_"+photomulNumber+".txt";//テキストボックスに何か書いてあればそれがファイル名
+		outputpath = curDir+"/result/"+fileName+"_"+photomulNumber+".txt";
 		MyFileWriter mfw = new MyFileWriter(outputpath,true);//trueを書くと追加していくようになる
-		mfw.writeALine(now+" "+data);
+
+
+		mfw.writeALine(now+" "+data+" "+sdf.format(cal.getTime()));
 		mfw.close();
 		//書き出しここまで
 

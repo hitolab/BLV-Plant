@@ -135,9 +135,9 @@ public class BLV extends JFrame {
 	//	jm = new JudgeMeasurement();
 
 		//シリアルポートの準備
-		this.cp1 = new CommunicatorPhotomul(1,dataseries1);//comportを指定
+		this.cp1 = new CommunicatorPhotomul(4,dataseries1);//comportを指定
 		this.cp2 = new CommunicatorPhotomul(2,dataseries2);//comportを指定
-		this.cp3 = new CommunicatorPhotomul(4,dataseries3);//comportを指定
+		this.cp3 = new CommunicatorPhotomul(6,dataseries3);//comportを指定
 		if(isWindows)this.ck = new CommunicatorKIKUSUI(7); //KIKUSUIとの接続 3は危険。
 		else this.ck = new CommunicatorKIKUSUI("/dev/cu.UC-232AC");
 		if(isWindows)this.ca = new CommunicatorArduino(5); //Arduinoとの接続、COM=5

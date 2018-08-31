@@ -78,9 +78,9 @@ public class myMeasureButton extends JButton{
 		this.setHorizontalAlignment(SwingConstants.CENTER);
 		this.setFocusPainted(false);
 		this.setForeground(new Color(255, 0, 0));
-		
+
 		this.noisefileTextbox = noisefileTextbox;
-		
+
 		this.addActionListener(new ActionListener() {
 		       public void actionPerformed(ActionEvent e) {
 		    	   if(state==0) waitingTomeasure();
@@ -110,6 +110,7 @@ public class myMeasureButton extends JButton{
 		ck.wait(5000);
 		ck.portclose();
 		String noiseFileName = noisefileTextbox.getText();
+		if(noiseFileName.equals("")) noiseFileName = "noise.txt";
 		if(!noiseFileName.substring(noiseFileName.length()-4,noiseFileName.length()).equals(".txt")) {
 			noiseFileName = noiseFileName+".txt";
 		}
@@ -158,7 +159,7 @@ public class myMeasureButton extends JButton{
 	private void measuringToStop(){//一時停止が押されたとき
 		ca.portclose();//
         t.stop();
-  
+
         ti.stop();
         tld.stop();
         //KIKUSUIの Aeduino(photomul)の機能を停止
