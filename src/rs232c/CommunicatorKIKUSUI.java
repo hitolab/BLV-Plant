@@ -78,9 +78,7 @@ public class CommunicatorKIKUSUI extends Communicator {
 	boolean openSerialPort(int x) {
 		try {
 			portId = CommPortIdentifier.getPortIdentifier("COM"+x);
-			System.out.println("111111");
 			port = (SerialPort)portId.open("pato", 2000);
-			System.out.println("22222");
 		} catch (NoSuchPortException e) {
 			e.printStackTrace();
 			return false;

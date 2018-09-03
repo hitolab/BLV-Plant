@@ -110,10 +110,18 @@ public class myMeasureButton extends JButton{
 		ck.wait(5000);
 		ck.portclose();
 		String noiseFileName = noisefileTextbox.getText();
-		if(noiseFileName.equals("")) noiseFileName = "noise.txt";
-		if(!noiseFileName.substring(noiseFileName.length()-4,noiseFileName.length()).equals(".txt")) {
+		if(noiseFileName.equals("")) noiseFileName = "noise.txt";//ノイズファイル名を指定しない場合のデフォルトノイズ
+		else if(noiseFileName.length()<4){//テキストボックスに何か書いてあればそれがファイル名（.txtを含まないファイル名の場合）4字以下のファイル名の時
 			noiseFileName = noiseFileName+".txt";
 		}
+		else{
+			if(!noiseFileName.substring(noiseFileName.length()-4,noiseFileName.length()).equals(".txt")) {
+
+			//テキストボックスに何か書いてあればそれがファイル名（.txtを含まないファイル名の場合）4字以上のファイル名の時
+			noiseFileName = noiseFileName+".txt";
+		}
+		}
+		System.out.println( "使用するノイズファイル： " + noiseFileName);//読み込んだノイズデータの確認表示
 		NoiseReader nr = new NoiseReader(noiseFileName);
 		double[] AllNoise = nr.getAllNoise();
 		int[] AllNoiseTime = nr.getAllNoiseTime();

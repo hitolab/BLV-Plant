@@ -125,7 +125,7 @@ public class AnyWave extends Timer implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Date date = new Date();//時刻表示用
-		System.out.println("tld（Anywave)のタイマー発動"+this.noisecounter+":"+date.toString());
+		System.out.println("tld（Anywave)のタイマー発動。刺激変更まであと"+this.noisecounter+"分:　"+date.toString());
 		int overshoot = 0;//tldが減算処理した結果0をしたまわって引きすぎの量
 		if(flag == 1)this.noisecounter -= 1; //何もしないときはnoisecounterを1減らす
 		if(this.noisecounter<=0 || flag==0){ //noisecounterが0になったら、菊水に通信

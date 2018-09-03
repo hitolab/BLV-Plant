@@ -152,13 +152,13 @@ else{
 		double now = (double) dateinms /1000.0/60.0/60.0;//開始からの経過時間を[ms]単位換算
 		dataseries.add(now, data);
 		System.out.println("Chamber" + photomulNumber+"; time:" + now+" data:"+data);
+		//計測～プロットここまで
 
 		  //カレンダーを生成
         Calendar cal = Calendar.getInstance();//空ファイルの名前設定に使用する。
         //フォーマットを設定して出力
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd");
 
-		//計測～プロットここまで
 		//書き出し機能
 		String fileName = ftb.getText();
 		Date date = new Date();//測定日「時」を記録するために、PC時間を取得
@@ -169,7 +169,7 @@ else{
 
 		}
 		else if(fileName.length()<4){//テキストボックスに何か書いてあればそれがファイル名（.txtを含まないファイル名の場合）
-			fileName = fileName ;
+			fileName = fileName;
 		}
 		else{
 		if(fileName.substring(fileName.length()-4, fileName.length()).equals(".txt")) {//ファイル名に.txtがついていればはぎとる
