@@ -127,16 +127,16 @@ public class BLV extends JFrame {
 
 		osCheck();
 		if(testMode) curDir= new File(".").getAbsoluteFile().getParent();
-		else if (isWindows)curDir = "C:\\Users\\circa\\Documents\\GitHub\\blvplant-test"; //ここ現状にあわせて変えてください！！(山崎君)
+		else if (isWindows)curDir = "C:\\Eclipce\\pleiades\\workspace\\BLV-Plant"; //ここを現状にあわせて変える
 		else curDir = "/Users/hito/Documents/GitHub/BLV-Plant/tree/develop/";
 
 
 		dlttb = new DelayLDTimeTextBox();
 	//	jm = new JudgeMeasurement();
 
-		//シリアルポートの準備
-		this.cp1 = new CommunicatorPhotomul(4,dataseries1);//comportを指定
-		this.cp2 = new CommunicatorPhotomul(2,dataseries2);//comportを指定
+		//シリアルポートの準備 1と3は相性の良し悪しがあるみたいなので、使わないほうが無難。
+		this.cp1 = new CommunicatorPhotomul(2,dataseries1);//comportを指定
+		this.cp2 = new CommunicatorPhotomul(4,dataseries2);//comportを指定
 		this.cp3 = new CommunicatorPhotomul(6,dataseries3);//comportを指定
 		if(isWindows)this.ck = new CommunicatorKIKUSUI(7); //KIKUSUIとの接続 3は危険。
 		else this.ck = new CommunicatorKIKUSUI("/dev/cu.UC-232AC");
@@ -341,7 +341,7 @@ public class BLV extends JFrame {
 	private void osCheck(){
 		String os = System.getProperty("os.name");
 		if(os.contains("Windows")) isWindows =true;
-		if(isWindows) curDir = "C:\\Eclipce\\pleiades\\workspace\\BLVPlant";
+		if(isWindows) curDir = "C:\\Eclipce\\pleiades\\workspace\\BLVPlant";//ここを現状に合わせて変える。
 		else curDir = "/Applications/BLV";
 	}
 
