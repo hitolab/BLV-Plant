@@ -553,7 +553,7 @@ public class CommunicatorPhotomul extends Communicator{
 	public String sendAndListen(String mes){
 		String ans="";
 		sendcommand(mes);
-		wait(3000);
+		wait(1000);
 		ans = readMessage();
 		return ans;
 	}
@@ -574,7 +574,15 @@ public class CommunicatorPhotomul extends Communicator{
 
 	public boolean isOpenPortConnection(){
 		boolean ans=false;
-		String text = sendAndListen("D").substring(0, 2);
+		String text = sendAndListen("D");
+		boolean getText = false;
+		if(text.length()!=0) getText = true;
+		
+		while(!getText) {
+			text = sendAndListen("D");
+			if(text.length()!=0) getText = true;
+		}
+			text = text.substring(0, 2);
 		System.out.println("checkPort:");
 		if(text.equals("VA")){
 			System.out.print("Port Open!");
