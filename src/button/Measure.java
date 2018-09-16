@@ -99,11 +99,10 @@ public class Measure extends Timer implements ActionListener{
 
 
 		measurePlotWrite(cp1,dataseries1,1);
-		measurePlotWrite(cp2,dataseries2,2);
-		measurePlotWrite(cp3,dataseries3,3);
-
 		cp1.portclose();
+		measurePlotWrite(cp2,dataseries2,2);
 		cp2.portclose();
+		measurePlotWrite(cp3,dataseries3,3);
 		cp3.portclose();
 
 		ca.wait(4000);
@@ -147,7 +146,7 @@ else{
 		System.out.println("starts measureing for Chamber" + photomulNumber);//測定開始
 		//計測～プロット
 		cp.init();
-		double data = cp1.measureOnce();//光量測定
+		double data = cp.measureOnce();//光量測定
 		long dateinms = new Date().getTime()-startTime;//開始からの経過時間
 		double now = (double) dateinms /1000.0/60.0/60.0;//開始からの経過時間を[ms]単位換算
 		dataseries.add(now, data);
